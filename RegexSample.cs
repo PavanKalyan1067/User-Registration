@@ -106,7 +106,7 @@ namespace UserRegisteration
 
         public static string ValidatingPhoneNum(string phoneNum)
         {
-            string[] phoneNumInput = { "91 7852234896", " 91 9865741548", "919865795312", "91@123", "A865" };
+            string[] phoneNumInput = { "91 8897441067", " 91 889744108", "", "91@123", "A865" };
             string phoneNumPattern = @"^[0-9]+[\s]+[0-9]{10}$";
             Regex regex = new Regex(phoneNumPattern);
 
@@ -126,7 +126,7 @@ namespace UserRegisteration
 
         public static string ValidatingPassWord(string password)
         {
-            string[] passwordInput = { "Shalini@12", "sakAthi_32", "raksha123", "prathee" };
+            string[] passwordInput = { "Pavan@12", "Pavan_32", "Pranay123", "Praveen" };
             string passwordPattern = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.*[<>`])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8,}$";
 
             Regex regex = new Regex(passwordPattern);

@@ -6,7 +6,6 @@ namespace TestProject1
     [TestClass]
     public class UnitTest1
     {
-       
         //Validation for Email
         [TestMethod]
         [DataRow("abc@gmail.com", "abc@gmail.com")]
@@ -39,5 +38,3 @@ namespace TestProject1
         }
     }
 }
-
-
