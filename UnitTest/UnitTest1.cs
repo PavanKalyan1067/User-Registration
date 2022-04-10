@@ -106,7 +106,7 @@ namespace TestProject1
 
         ////Validation for Password
         [TestMethod]
-        
+
         [DataRow("Pavan129", "@Pavana129")]
         [DataRow("pk123", "pk@123")]
         [DataRow("pk123)@1234", null)]
@@ -124,8 +124,90 @@ namespace TestProject1
                 Assert.AreEqual(expected, actual.message);
             }
         }
+        [TestMethod]
+        public void Test_Method_Object_Creation_RegexSample()
+        {
+            object expected = new RegexSample();
+            UserRegistrationFactory factory = new UserRegistrationFactory();
+            object actual = factory.CreateObjectForRegexSample("UserRegistration.RegexSample", "RegexSample");
+            expected.Equals(actual);
 
+        }
+        //Test for parameterconstructor invoked using object created
+        [TestMethod]
+        public void Test_Method_Parameteized_Constructor()
+        {
+            object expected = new RegexSample("RegularExpression");
+            UserRegistrationFactory factory = new UserRegistrationFactory();
+            object actual = factory.CreateParameterizedConstructor("UserRegistration.RegexSample", "RegexSample", "RegularExpression");
+            actual.Equals(expected);
+        }
 
+        [TestMethod]
+        public void Reflection_Return_Default_Constructor_No_Constructor_Found()
+        {
+            string expected = "No constructor found";
+            object obj = null;
+            try
+            {
+                UserRegistrationFactory factory = new UserRegistrationFactory();
+                obj = factory.CreateObjectForRegexSample("UserRegistration.RegexSample", "RegexSam");
 
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+        }
+        [TestMethod]
+        public void Reflection_Return_Default_Constructor_No_Class_Found()
+        {
+            string expected = "No class found";
+            object obj = null;
+            try
+            {
+                UserRegistrationFactory factory = new UserRegistrationFactory();
+                obj = factory.CreateObjectForRegexSample("UserRegistration.RegexSae", "RegexSample");
+
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+        }
+        [TestMethod]
+        public void Reflection_Return_Parameterized_Class_Invalid()
+        {
+            string message = "Regular Expression";
+            string expected = "No class found";
+            object actual = null;
+            try
+            {
+                UserRegistrationFactory factory = new UserRegistrationFactory();
+                actual = factory.CreateParameterizedConstructor("UserRegistration.RegexSae", "RegexSample", message);
+
+            }
+            catch (CustomException actual1)
+            {
+                Assert.AreEqual(expected, actual1.Message);
+            }
+        }
+        [TestMethod]
+        public void Reflection_Return_Parameterized_Constructor_Invalid()
+        {
+            string message = "Regular Expression";
+            string expected = "No constructor found";
+            object actual = null;
+            try
+            {
+                UserRegistrationFactory factory = new UserRegistrationFactory();
+                actual = factory.CreateParameterizedConstructor("UserRegistration.RegexSample", "RegexSam", message);
+
+            }
+            catch (CustomException actual1)
+            {
+                Assert.AreEqual(expected, actual1.Message);
+            }
+        }
     }
 }

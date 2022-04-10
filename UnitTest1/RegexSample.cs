@@ -4,17 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-
 namespace UserRegisteration
 {
     public class RegexSample
     {
-        string pattern = "^[A-Za-z]{2,}$";
 
+        public string message;
+        public static string firstName;
+        public static string lastName;
+        public static string email;
+        public static string phoneNum;
+        public static string paasword;
+        string pattern = "^[A-Z][a-z]{2,}$";
 
+        public RegexSample()
+        {
+            Console.WriteLine("Default Constructor");
+        }
+        public RegexSample(string message)
+        {
+            this.message = message;
+        }
         public void Validating()
         {
-            Console.WriteLine("--------------------------");
             Regex regex = new Regex(pattern);
             Console.WriteLine("--------------------------");
             Console.WriteLine(" ");
@@ -46,32 +58,11 @@ namespace UserRegisteration
             Console.WriteLine("Enter the password");
             string input4 = Console.ReadLine();
             ValidatingPassWord(input4);
-
         }
-
-        public bool CheckPassword(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckEmail(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckMobileNo(string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckName(string v)
-        {
-            throw new NotImplementedException();
-        }
-
         public static string ValidatingFirstName(string firstName)
         {
             Regex regex = new Regex("^[A-Z][a-z]{2,}$");
+
             bool res = regex.IsMatch(firstName);
             try
             {
@@ -90,17 +81,16 @@ namespace UserRegisteration
                 }
                 else
                 {
-                    throw new CustomException(CustomException.ExceptionType.INVALID_MESSAGE, "First should be valid"); throw new CustomException(CustomException.ExceptionType.INVALID_MESSAGE, "First should be valid");
+                    throw new CustomException(CustomException.ExceptionType.INVALID_MESSAGE, "First should be valid");
                 }
-
             }
             catch (NullReferenceException ex)
             {
                 return ex.Message;
-
             }
         }
         public static string ValidatingLastName(string lastName)
+
         {
             string pattern = "^[A-Z][a-z]{2,}$";
             Regex regex = new Regex(pattern);
@@ -124,12 +114,13 @@ namespace UserRegisteration
                 {
                     throw new CustomException(CustomException.ExceptionType.INVALID_MESSAGE, "Last name should be valid");
                 }
-                //return default;
+
             }
             catch (NullReferenceException ex)
             {
                 return ex.Message;
             }
+            // return default;
 
         }
         public static string ValidatingEmailId(string email)
@@ -137,11 +128,12 @@ namespace UserRegisteration
 
             string emailPattern = (@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
             Regex regex = new Regex(emailPattern);
-            // for (int i = 0; i < emailInput.Length; i++)
-            //{
+
             bool result = regex.IsMatch(email);
             try
             {
+
+
                 if (email.Equals(""))
                 {
                     throw new CustomException(CustomException.ExceptionType.EMPTY_MESSAGE, "Email Id should not be empty");
@@ -150,7 +142,6 @@ namespace UserRegisteration
                 {
                     throw new CustomException(CustomException.ExceptionType.NULL_MESSAGE, "Email Id should not be null");
                 }
-
                 if (result)
                 {
                     Console.WriteLine(email + " ----->Valid");
@@ -160,22 +151,20 @@ namespace UserRegisteration
                 {
                     throw new CustomException(CustomException.ExceptionType.INVALID_MESSAGE, "Email Id should be valid");
                 }
-
-                //return default;
             }
             catch (NullReferenceException ex)
             {
+
+
+
                 return ex.Message;
             }
-
         }
-
         public static string ValidatingPhoneNum(string phoneNum)
         {
             string[] phoneNumInput = { "91 7852234896", " 91 9865741548", "919865795312", "91@123", "A865" };
             string phoneNumPattern = @"^[0-9]+[\s]+[0-9]{10}$";
             Regex regex = new Regex(phoneNumPattern);
-
             bool result = regex.IsMatch(phoneNum);
             try
             {
@@ -204,11 +193,9 @@ namespace UserRegisteration
         }
 
 
-
-
         public static string ValidatingPassWord(string password)
         {
-            string[] passwordInput = { "Shalini@12", "sakAthi_32", "raksha123", "prathee" };
+            string[] passwordInput = { "Radhika@12", "sumAthi_32", "Priya123", "praveena" };
             string passwordPattern = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.*[<>`])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8,}$";
 
             Regex regex = new Regex(passwordPattern);
@@ -231,7 +218,6 @@ namespace UserRegisteration
                 }
                 else
                 {
-
                     throw new CustomException(CustomException.ExceptionType.INVALID_MESSAGE, "Passwordshould be valid");
                 }
             }
@@ -239,7 +225,6 @@ namespace UserRegisteration
             {
                 return ex.Message;
             }
-
         }
     }
 }
